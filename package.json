@@ -1,0 +1,20 @@
+{
+  "name": "mvt-to-geojson",
+  "version": "0.0.2",
+  "description": "A typescript library convert mvt into geojson in both nodejs and in browser",
+  "homepage": "https://github.com/pietervdvn/mvt-to-geojson",
+  "bugs": "https://github.com/pietervdvn/mvt-to-geojson/issues",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -project .",
+    "publish": "npm run build && npm publish",
+    "test": "ts-node test/test.ts"
+  },
+  "author": "Pieter Vander Vennet",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "pbf": "^3.2.1",
+    "@types/geojson": "^7946.0.14"
+  }
+}

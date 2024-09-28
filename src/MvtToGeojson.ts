@@ -27,7 +27,7 @@ export class MvtToGeojson {
         const data = Tile.read(new Pbf(buffer), undefined)
         const features: GeojsonFeature[] = []
         for (const layer of data.layers) {
-            if(layer?.indexOf(layer.name) < 0){
+            if (layers !== undefined && layers.indexOf(layer.name) < 0) {
                 continue
             }
             const builder = new MvtToGeojson(layer.extent, x, y, z)
@@ -80,21 +80,6 @@ export class MvtToGeojson {
         for (let i = 0; i < tags.length; i += 2) {
             properties[keys[tags[i]]] = MvtToGeojson.getValue(values[tags[i + 1]])
         }
-        let type: string = "node"
-        switch (properties["osm_type"]) {
-            case "N":
-                type = "node"
-                break
-            case "W":
-                type = "way"
-                break
-            case "R":
-                type = "relation"
-                break
-        }
-        properties["id"] = type + "/" + properties["osm_id"]
-        delete properties["osm_id"]
-        delete properties["osm_type"]
 
         return properties
     }
